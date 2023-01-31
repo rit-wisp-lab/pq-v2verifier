@@ -1,3 +1,21 @@
+//
+// Created by geoff on 10/14/21.
+//
+
+#ifndef CPP_VEHICLE_H
+#define CPP_VEHICLE_H
+
+#include <string>
+#include <openssl/sha.h>
+#include "VehicleUtil.h"
+#include "ieee16092.h"
+#include "bsm.h"
+#include <openssl/crypto.h>
+#include <openssl/ec.h>
+#include <oqs/oqs.h>
+#include "v2vcrypto.h"
+#include <vector>
+
 class Vehicle {
 
 private:

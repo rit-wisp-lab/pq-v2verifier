@@ -1,3 +1,7 @@
+//
+// Created by geoff on 10/14/21.
+//
+
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <cstring>
@@ -199,6 +203,7 @@ void Vehicle::generate_falcon_spdu(Vehicle::falcon_spdu &spdu) {
     auto cert_bytes = reinterpret_cast<uint8_t*>(&spdu.data.signedData.cert);
     size_t cert_length = sizeof(spdu.data.signedData.cert);
 
+    // TODO: this needs to be signed with a separate CA falcon private key whose public key is available to all vehicles
     falcon_sign(signature, signature_length, cert_bytes, cert_length, falcon_private_key);
 
     auto stop_time = std::chrono::high_resolution_clock::now();
@@ -234,6 +239,10 @@ void Vehicle::print_bsm(Vehicle::ecdsa_spdu &spdu) {
     std::cout << "Heading:\t" << spdu.data.signedData.tbsData.message.heading << std::endl;
 }
 
+/*
+ * This is largely a debugging function so we can print and view received data, e.g., to make sure that things are being
+ * sent and received properly.
+ */
 void Vehicle::print_spdu(Vehicle::ecdsa_spdu &spdu) {
     std::cout << "Timestamp:\t" << std::chrono::system_clock::to_time_t(spdu.data.signedData.tbsData.headerInfo.timestamp) << std::endl;
 }
