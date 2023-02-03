@@ -1,13 +1,11 @@
-//
-// Created by geoff on 10/19/21.
-//
+// Copyright (c) 2022. Geoff Twardokus
+// Reuse permitted under the MIT License as specified in the LICENSE file within this project.
 
 #ifndef CPP_IEEE16092_H
 #define CPP_IEEE16092_H
 
 #include "bsm.h"
 #include "certificates.h"
-#include <oqs/oqs.h>
 
 struct header_info {
     uint8_t psid = 32;
@@ -32,12 +30,6 @@ struct signed_data_ecdsa_explicit_certificate {
     ecdsa_explicit_certificate cert = {};
 };
 
-struct signed_data_falcon_explicit_certificate {
-    uint8_t hashID = 0; // SHA-256
-    to_be_signed_data tbsData;
-    falcon_explicit_certificate cert = {};
-};
-
 struct signed_data {
     uint8_t hashID = 0;
     to_be_signed_data tbsData;
@@ -52,12 +44,6 @@ struct ieee1609dot2data_ecdsa_explicit {
     uint8_t protocol_version = 3;
     signed_data_ecdsa_explicit_certificate signedData;
     unsigned char certificate_signature[72];
-};
-
-struct ieee1609dot2data_falcon_explicit {
-    uint8_t protocol_version = 3;
-    signed_data_falcon_explicit_certificate signedData;
-    unsigned char certificate_signature[OQS_SIG_falcon_512_length_signature];
 };
 
 struct ieee1609dot2data {

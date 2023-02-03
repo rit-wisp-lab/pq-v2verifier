@@ -1,11 +1,13 @@
 cmake_minimum_required(VERSION 3.20)
 project(pq-v2verifier)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+
 set(SOURCE_FILES
     src/main.cpp
     src/Vehicle.cpp
-    src/VehicleUtil.cpp
     src/v2vcrypto.cpp
+    src/bsm.cpp
 )
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 

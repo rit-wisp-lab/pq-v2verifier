@@ -1,29 +1,104 @@
+// Copyright (c) 2022. Geoff Twardokus
+// Reuse permitted under the MIT License as specified in the LICENSE file within this project.
+
 #include <iostream>
 #include <thread>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
 
 #include "Vehicle.h"
-#include "VehicleUtil.h"
+#include "arguments.h"
+
+
+void print_usage() {
+    std::cout << "Usage: v2verifer {dsrc | cv2x} {transmitter | receiver} {tkgui | webgui | nogui} [--test]" << std::endl;
+}
 
 int main(int argc, char *argv[]) {
 
-    int num_msgs = 10000;
-
-    ArgumentParser Parsed_args;
-    if(argc == 7 || argc == 6 || argc == 2)
-        Parsed_args = parse_args(argc,argv);
-    else{
-        perror("1(-h), 5 or 6 arguments are required for execution\n");
+    if(argc < 3 || argc > 5) {
+        print_usage();
         exit(EXIT_FAILURE);
     }
 
-    if(Parsed_args.perspective==TRANSMITTER) {
-        Vehicle v1;
-        v1.transmit(num_msgs, Parsed_args);
-        v1.get_average_sign_times();
+    program_arguments args;
+
+    if(std::string(argv[1]) == "dsrc")
+        args.tech_choice = DSRC;
+    else if(std::string(argv[1]) == "cv2x")
+        args.tech_choice = CV2X;
+    else {
+        std::cout << "Error: first argument must be DSRC or C_V2X" << std::endl;
+        print_usage();
+        exit(EXIT_FAILURE);
     }
-    else if (Parsed_args.perspective==RECEIVER) {
-        Vehicle v1;
-        v1.receive(num_msgs, Parsed_args);
-        v1.get_average_verify_times();
+
+    if(std::string(argv[2]) == "transmitter") {
+        args.sim_mode = TRANSMITTER;
     }
+    else if(std::string(argv[2]) == "receiver")
+        args.sim_mode = RECEIVER;
+    else {
+        std::cout << R"(Error: second argument must be "transmitter" or "receiver")" << std::endl;
+        print_usage();
+        exit(EXIT_FAILURE);
+    }
+
+    if(std::string(argv[3]) == "tkgui")
+    args.tkgui = true;
+    else if(std::string(argv[3]) == "webgui")
+        args.webgui = true;
+    else if(std::string(argv[3]) == "nogui")
+        args.tkgui, args.webgui = false;
+    else {
+        std::cout << R"(Error: third argument must be "tkgui, webgui, or nogui")" << std::endl;
+        print_usage();
+        exit(EXIT_FAILURE);
+    }
+
+    if(argc >= 4) {
+        if(argc == 5) {
+            if (std::string(argv[4]) == "--test")
+                args.test = true;
+            else {
+                std::cout << R"(Error: optional third argument can only be "--test")" << std::endl;
+                print_usage();
+                exit(EXIT_FAILURE);
+            }
+        }
+    }
+
+    boost::property_tree::ptree tree;
+    boost::property_tree::json_parser::read_json("config.json",tree);
+
+    auto num_vehicles = tree.get<uint8_t>("scenario.numVehicles");
+    auto num_msgs = tree.get<uint16_t>("scenario.numMessages");
+
+    if(args.sim_mode == TRANSMITTER) {
+        std::vector<Vehicle> vehicles;
+        std::vector<std::thread> workers;
+
+        // initialize vehicles - has to be in a separate loop to prevent vector issues
+        for(int i = 0; i < num_vehicles; i++) {
+            vehicles.emplace_back(Vehicle(i));
+        }
+
+        // start a thread for each vehicle
+        for(int i = 0; i < num_vehicles; i++) {
+            workers.emplace_back(std::thread(vehicles.at(i).transmit_static, &vehicles.at(i), num_msgs, args.test));
+        }
+
+        // wait for each vehicle thread to finish
+        for(int i = 0; i < num_vehicles; i++) {
+            workers.at(i).join();
+        }
+
+    }
+    else if (args.sim_mode == RECEIVER) {
+        Vehicle v1(0);
+        v1.receive(num_msgs * num_vehicles, args.test, args.tkgui, args.webgui);
+    }
+
+
+
 }

@@ -1,11 +1,8 @@
-//
-// Created by geoff on 11/13/21.
-//
+// Copyright (c) 2022. Geoff Twardokus
+// Reuse permitted under the MIT License as specified in the LICENSE file within this project.
 
-#include <iostream>
 #include <openssl/ec.h>
 #include <openssl/sha.h>
-#include <oqs.h>
 
 
 void ecdsa_sign(unsigned char *hash, EC_KEY *signing_key, unsigned int* signature_buffer_length, unsigned char *signature) {
@@ -17,24 +14,14 @@ void ecdsa_sign(unsigned char *hash, EC_KEY *signing_key, unsigned int* signatur
 
 }
 
-bool ecdsa_verify(unsigned char *hash, unsigned char *signature, const unsigned int* signature_buffer_length, EC_KEY *verification_key) {
-
-    return ECDSA_verify(0, hash,32, signature, (int)*signature_buffer_length, verification_key);
-
-}
-
-void falcon_sign(uint8_t *signature, size_t &signature_len, uint8_t *message, size_t message_len, uint8_t *private_key) {
-
-    if (OQS_SIG_falcon_512_sign(signature, &signature_len, message, message_len, private_key) != OQS_SUCCESS) {
-        perror("Error in call to falcon_sign");
+int ecdsa_verify(unsigned char *hash, unsigned char *signature, const unsigned int* signature_buffer_length, EC_KEY *verification_key) {
+    int result = ECDSA_verify(0, hash,32, signature, (int)*signature_buffer_length, verification_key);
+    if(result == -1) {
+        perror("Fatal error: ECDSA_verify returned -1");
         exit(EXIT_FAILURE);
     }
-}
-
-bool falcon_verify(uint8_t *message, size_t message_len, uint8_t *signature, size_t signature_len, uint8_t *public_key) {
-
-    OQS_STATUS result = OQS_SIG_falcon_512_verify(message, message_len, signature, signature_len, public_key);
-    return result == OQS_SUCCESS;
+    else
+        return result;
 
 }
 
