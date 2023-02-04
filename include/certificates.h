@@ -6,6 +6,7 @@
 
 #include <array>
 #include <openssl/ec.h>
+#include <oqs/oqs.h>
 
 struct common_cert_fields {
     uint8_t version = 3;
@@ -34,5 +35,13 @@ struct ecdsa_explicit_certificate {
     uint8_t verification_key_type = 128;
     uint8_t verification_key_choice = 132;
 };
+
+struct falcon_explicit_certificate {
+    common_cert_fields commonCertFields;
+    uint8_t certificate_type = 0;
+    uint8_t verify_key_indicator = 132;
+    uint8_t signing_public_key[OQS_SIG_falcon_512_length_public_key];
+};
+
 
 #endif //CPP_CERTIFICATES_H

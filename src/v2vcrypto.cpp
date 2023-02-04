@@ -3,7 +3,7 @@
 
 #include <openssl/ec.h>
 #include <openssl/sha.h>
-
+#include <oqs.h>
 
 void ecdsa_sign(unsigned char *hash, EC_KEY *signing_key, unsigned int* signature_buffer_length, unsigned char *signature) {
 
@@ -44,3 +44,19 @@ void sha256sum(void* data, unsigned long length, unsigned char* md) {
     }
 
 }
+
+void falcon_sign(uint8_t *signature, size_t &signature_len, uint8_t *message, size_t message_len, uint8_t *private_key) {
+
+    if (OQS_SIG_falcon_512_sign(signature, &signature_len, message, message_len, private_key) != OQS_SUCCESS) {
+        perror("Error in call to falcon_sign");
+        exit(EXIT_FAILURE);
+    }
+}
+
+bool falcon_verify(uint8_t *message, size_t message_len, uint8_t *signature, size_t signature_len, uint8_t *public_key) {
+
+    OQS_STATUS result = OQS_SIG_falcon_512_verify(message, message_len, signature, signature_len, public_key);
+    return result == OQS_SUCCESS;
+
+}
+
