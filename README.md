@@ -6,7 +6,7 @@ communication.
 
 ## Installation
 
-*For artifact evaluation at NDSS 2024, a pre-configured virtual machine is available at [url](url_here)*.
+*For artifact evaluation at NDSS 2024, a pre-configured virtual machine is available [here](https://bit.ly/3ruvzsH)*.
 
 It is recommended to begin with a fresh installation of Ubuntu 22.04.
 
@@ -19,7 +19,7 @@ Begin by updating all Ubuntu packages to their latest versions:
 Next, install dependencies that are required for *PQ-V2Verifier*:
 
     sudo apt install -y libboost-dev git
-    sudo apt install -7 astyle cmake gcc ninja-build libssl-dev python3-pytest python3-pytest-xdist unzip xsltproc doxygen graphviz python3-yaml valgrind
+    sudo apt install -y astyle cmake gcc ninja-build libssl-dev python3-pytest python3-pytest-xdist unzip xsltproc doxygen graphviz python3-yaml valgrind
 
 ### Installing liboqs
 
