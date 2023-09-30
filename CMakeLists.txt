@@ -12,6 +12,6 @@ set(SOURCE_FILES
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/include)
-target_include_directories(${PROJECT_NAME} PRIVATE /usr/local/include/oqs)
+target_include_directories(${PROJECT_NAME} PRIVATE $ENV{HOME}/liboqs-x86/include/)
 
-target_link_libraries(${PROJECT_NAME} crypto oqs)
+target_link_libraries(${PROJECT_NAME} crypto $ENV{HOME}/liboqs-x86/lib/liboqs.a)
