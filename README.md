@@ -13,13 +13,13 @@ It is recommended to begin with a fresh installation of Ubuntu 22.04.
 ### Setup
 Begin by updating all Ubuntu packages to their latest versions:
 
-  sudo apt update
-  sudo apt upgrade -y
+    sudo apt update
+    sudo apt upgrade -y
 
 Next, install dependencies that are required for *PQ-V2Verifier*:
 
-  sudo apt install -y libboost-dev git
-  sudo apt install -7 astyle cmake gcc ninja-build libssl-dev python3-pytest python3-pytest-xdist unzip xsltproc doxygen graphviz python3-yaml valgrind
+    sudo apt install -y libboost-dev git
+    sudo apt install -7 astyle cmake gcc ninja-build libssl-dev python3-pytest python3-pytest-xdist unzip xsltproc doxygen graphviz python3-yaml valgrind
 
 ### Installing liboqs
 
