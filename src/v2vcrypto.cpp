@@ -3,7 +3,7 @@
 
 #include <openssl/ec.h>
 #include <openssl/sha.h>
-#include <oqs.h>
+#include <oqs/oqs.h>
 
 void ecdsa_sign(unsigned char *hash, EC_KEY *signing_key, unsigned int* signature_buffer_length, unsigned char *signature) {
 
