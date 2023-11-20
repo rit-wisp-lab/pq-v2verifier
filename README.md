@@ -33,6 +33,17 @@ under both classical and _Partially Hybrid_ designs)
 - `src` - C++ source files (.cpp) for PQ-V2Verifier
 - `trace_files` - sample coordinate trace files for vehicles to use for location data in simulated BSMs
 
+### Hardware
+No hardware is required beyond a "commodity PC." As defined by the
+[NDSS 2024 Call for Artifacts](https://web.archive.org/web/20230930035437/https://secartifacts.github.io/ndss2024/call),
+"[a] commodity desktop machine is defined as one with an x86-64 CPU with 8 cores and 16 GB of RAM running a recent Linux
+or Windows operating system."
+
+### Software
+An Ubuntu 22.04 virtual machine containing the pre-configured artifact is available from [](). This virtual machine was
+created and evaluated using Virtualbox version 7.0.8 r156879 (Qt5.15.2), which is freely available from Oracle at
+https://www.virtualbox.org. We recommend users and evaluators use the same version to ensure consistency.
+
 ## Installation
 
 *For artifact evaluation at NDSS 2024, a pre-configured virtual machine is available [here](https://bit.ly/3ruvzsH)*.
