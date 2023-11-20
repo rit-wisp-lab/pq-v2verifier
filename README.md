@@ -33,6 +33,8 @@ under both classical and _Partially Hybrid_ designs)
 - `src` - C++ source files (.cpp) for PQ-V2Verifier
 - `trace_files` - sample coordinate trace files for vehicles to use for location data in simulated BSMs
 
+## Evaluation Requirements and Supported Environments
+
 ### Hardware
 No hardware is required beyond a "commodity PC." As defined by the
 [NDSS 2024 Call for Artifacts](https://web.archive.org/web/20230930035437/https://secartifacts.github.io/ndss2024/call),
