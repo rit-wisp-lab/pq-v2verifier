@@ -19,6 +19,20 @@ Bibtex:
         pages = ""
     }
 
+## Repository Structure
+This repository is organized in several directories, as follows:
+
+- `cert_keys` - ten ECDSA keypairs to be used for signing BSMs
+- `falcon_keys` - ten Falcon-512 keypairs to be used for signing certificates (in the context of the paper,
+these are the keys a CA would use to sign its certificates and guarantee their integrity under the _Partially Hybrid_
+protocol for V2V)
+- `include` - C++ header (.h) library files
+- `keys` - ten ECDSA keypairs to be used for signing certificates (to be used for guaranteeing certificate integrity
+under both classical and _Partially Hybrid_ designs)
+- `scripts` - a Python script to generate keypairs for ECDSA and various post-quantum algorithms
+- `src` - C++ source files (.cpp) for PQ-V2Verifier
+- `trace_files` - sample coordinate trace files for vehicles to use for location data in simulated BSMs
+
 ## Installation
 
 *For artifact evaluation at NDSS 2024, a pre-configured virtual machine is available [here](https://bit.ly/3ruvzsH)*.
