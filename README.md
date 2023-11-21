@@ -1,5 +1,7 @@
 # PQ-V2Verifier (Artifact Version)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10158025.svg)](https://doi.org/10.5281/zenodo.10158025)
+
 This is a preliminary version of PQ-V2Verifier, an extension of [V2Verifier](https://github.com/twardokus/v2verifier) 
 that enables experimentation with post-quantum (PQ) authentication algorithms and protocols for vehicle-to-vehicle (V2V)
 communication. This repository is made available as part of an artifact submission to the 2024 Network and Distributed 
@@ -33,7 +35,38 @@ under both classical and _Partially Hybrid_ designs)
 - `src` - C++ source files (.cpp) for PQ-V2Verifier
 - `trace_files` - sample coordinate trace files for vehicles to use for location data in simulated BSMs
 
+## Minimum Working Example
+An Ubuntu 22.04 virtual machine that is pre-configured to compile and run the artifact is archived in OVA format
+at [doi:10.5281/zenodo.10160535](https://doi.org/10.5281/zenodo.10160535). This virtual machine was
+created and evaluated using Virtualbox version 7.0.8 r156879 (Qt5.15.2), which is freely available from Oracle at
+https://www.virtualbox.org. We recommend users and evaluators use the same version to ensure consistency.
+
 ## Evaluation Requirements and Supported Environments
+
+### Supported operating system
+Ubuntu 22.04 is the only supported operating system.
+
+### Software
+Libraries that can be installed through the Ubuntu package manager:
+- libboost-dev
+- git
+- astyle 
+- cmake 
+- gcc 
+- ninja-build 
+- libssl-dev 
+- python3-pytest 
+- python3-pytest-xdist 
+- unzip 
+- xsltproc 
+- doxygen 
+- graphviz 
+- python3-yaml 
+- valgrind
+
+Libraries that need to be built from source (using the below instructions - validated for most recent versions
+of these libraries as of September 2023):
+- liboqs, a post-quantum algorithm library from Open Quantum Safe (https://github.com/open-quantum-safe/liboqs.git)
 
 ### Hardware
 No hardware is required beyond a "commodity PC." As defined by the
@@ -41,15 +74,8 @@ No hardware is required beyond a "commodity PC." As defined by the
 "[a] commodity desktop machine is defined as one with an x86-64 CPU with 8 cores and 16 GB of RAM running a recent Linux
 or Windows operating system."
 
-### Software
-An Ubuntu 22.04 virtual machine containing the pre-configured artifact is available from [](). This virtual machine was
-created and evaluated using Virtualbox version 7.0.8 r156879 (Qt5.15.2), which is freely available from Oracle at
-https://www.virtualbox.org. We recommend users and evaluators use the same version to ensure consistency.
 
 ## Installation
-
-*For artifact evaluation at NDSS 2024, a pre-configured virtual machine is available [here](https://bit.ly/3ruvzsH)*.
-
 It is recommended to begin with a fresh installation of Ubuntu 22.04.
 
 ### Setup
