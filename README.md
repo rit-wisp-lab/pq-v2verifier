@@ -48,21 +48,21 @@ Ubuntu 22.04 is the only supported operating system.
 
 ### Software
 Libraries that can be installed through the Ubuntu package manager:
-- libboost-dev
+- astyle
+- cmake
+- doxygen
+- gcc
 - git
-- astyle 
-- cmake 
-- gcc 
-- ninja-build 
-- libssl-dev 
+- graphviz
+- libboost-dev
+- libssl-dev
+- ninja-build
 - python3-pytest 
 - python3-pytest-xdist 
+- python3-yaml
 - unzip 
-- xsltproc 
-- doxygen 
-- graphviz 
-- python3-yaml 
 - valgrind
+- xsltproc
 
 Libraries that need to be built from source (using the below instructions - validated for most recent versions
 of these libraries as of September 2023):
