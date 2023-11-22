@@ -161,3 +161,19 @@ In the transmitter terminal, you should immediately see output indicating that m
 In the receiver terminal window, you should see output indicating that messages are being received, the contents of those messages (e.g., the stated heading of the transmitting "vehicle"), and an indication of whether or not the digital signature on each received message has been successfully verified.
 
 If all has gone as described above, the availability and functionality of *PQ-V2Verifier* has been demonstrated. 
+
+## Customizing Experiments
+The generic experiment described above can be adjusted in two ways.
+
+1. The `config.json` file can be used to change the number of simulated vehicles sending BSMs,
+as well as the total number of messages that each vehicle will transmit before the simulation terminates.
+The basic format of this file is quite simple, the number of vehicles can be adjusted by changing the value of 
+the `numVehicles` key, while the number of BSMs per vehicle can be adjusted by changing the 
+`numMessages` key.
+2. The data that vehicles use to fill BSMs (e.g., with their location, speed, heading) is based on the trace files
+found in the `trace_files` directory. For the minimum working example, where `config.json` specifies one transmitting
+vehicle, one trace file (`0.csv`) is provided. If more vehicles are desired, more trace files must be provided (the 
+total number of trace files should match the number of vehicle specific in `config.json`). Each trace file
+consists of comma-separated lines in the format `latitude,longitude,elevation,speed,heading`; for example, 
+`10,25,0,60,90` indicates a location at coordinates 10N, 25E with zero elevation, a speed of 60 km/hr, and 
+a heading of 90 degrees (due west).
