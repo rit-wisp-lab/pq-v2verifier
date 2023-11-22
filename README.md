@@ -68,6 +68,8 @@ Libraries that need to be built from source (using the below instructions - vali
 of these libraries as of September 2023):
 - liboqs, a post-quantum algorithm library from Open Quantum Safe (https://github.com/open-quantum-safe/liboqs.git)
 
+No additional software dependencies are required.
+
 ### Hardware
 No hardware is required beyond a "commodity PC." As defined by the
 [NDSS 2024 Call for Artifacts](https://web.archive.org/web/20230930035437/https://secartifacts.github.io/ndss2024/call),
