@@ -4,7 +4,10 @@
 
 This is a preliminary version of PQ-V2Verifier, an extension of [V2Verifier](https://github.com/twardokus/v2verifier) 
 that enables experimentation with post-quantum (PQ) authentication algorithms and protocols for vehicle-to-vehicle (V2V)
-communication. This repository is made available as part of an artifact submission to the 2024 Network and Distributed 
+communication. Please note that over the next few months, PQ-V2Verifier will be integrated with [V2Verifier](https://github.com/twardokus/v2verifier),
+our main V2V security testbed project.
+
+This artifact repository is made available as part of an artifact submission to the 2024 Network and Distributed 
 System Security Symposium (NDSS), associated with the following paper:
 
 Geoff Twardokus, Nina Bindel, Hanif Rahbari, and Sarah McCarthy, "When Cryptography Needs a Hand: Practical Post-Quantum Authentication for V2V Communications," _Network and Distributed System Security Symposium (NDSS 2024)_, San Diego, CA, Feb. 2024.
