@@ -1,6 +1,6 @@
 # PQ-V2Verifier (Artifact Version)
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10189511.svg)](https://doi.org/10.5281/zenodo.10189511)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10189528.svg)](https://doi.org/10.5281/zenodo.10189528)
 
 This is a preliminary version of PQ-V2Verifier, an extension of [V2Verifier](https://github.com/twardokus/v2verifier) 
 that enables experimentation with post-quantum (PQ) authentication algorithms and protocols for vehicle-to-vehicle (V2V)
